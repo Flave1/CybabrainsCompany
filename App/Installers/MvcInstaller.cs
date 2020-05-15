@@ -68,7 +68,7 @@ namespace App.Installers
                 });
             });
 
-            services.AddHttpClient("GODP", client =>
+            services.AddHttpClient("CYBER", client =>
             {
                 client.BaseAddress = new Uri("http://localhost:56633/");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -107,19 +107,19 @@ namespace App.Installers
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Flave Cloud",
+                    Title = "CYBER Cloud",
                     Version = "V1",
                     Description = "An API to perform business automated operations",
-                    TermsOfService = new Uri("http://www.godp.co.uk/"),
+                    TermsOfService = new Uri("http://www.CYBER.co.uk/"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Flave Tech",
-                        Email = "Flavetechs@gmail.com",
+                        Name = "CYBER BRAINS",
+                        Email = "cyberbrains.com",
                         Url = new Uri("https://twitter.com/FavourE65881201"),
                     },
                     License = new OpenApiLicense
                     {
-                        Name = "GODP API LICX",
+                        Name = "CYBER API LICX",
                         Url = new Uri("http://www.flave.co.uk/"),
                     },
 
