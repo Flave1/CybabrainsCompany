@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-App-C9B5F1F1-8FB8-4D1C-8A44-8880679AF93C</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200530111040_slider.cs" />
+    <Compile Remove="Data\Migrations\20200530111040_slider.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

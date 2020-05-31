@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Contracts.Response;
+using System;
 using System.Collections.Generic;
 
 namespace App.Contracts.ErrorResponses
@@ -7,5 +8,11 @@ namespace App.Contracts.ErrorResponses
     {
         public string FieldName { get; set; }
         public string Message { get; set; }
+    }
+
+    public class NewErrorModel
+    {
+        public string FieldName { get; set; }
+        public APIResponseStatus Status { get; set; }
     }
 }

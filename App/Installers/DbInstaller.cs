@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using App.DomainObjects.Auth;
+using App.Repository.Implementation;
+using App.Repository.Interface;
 
 namespace App.Installers
 {
@@ -19,7 +21,7 @@ namespace App.Installers
                    options.UseSqlServer(
                        configuration.GetConnectionString("DefaultConnection")));
 
-
+            services.AddScoped<ISliderServices, SliderServices>();
             services.AddDefaultIdentity<ApplicationUser>(opt =>
             {
                 opt.Password.RequiredLength = 5;

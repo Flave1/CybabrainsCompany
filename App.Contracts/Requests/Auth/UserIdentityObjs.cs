@@ -34,13 +34,15 @@ namespace App.Contracts.Requests.Auth
     }
     public class AuthFailedResponse
     {
-        public IEnumerable<string> Errors { get; set; }
+        //public IEnumerable<string> Errors { get; set; }
+        public APIResponseStatus Status { get; set; }
     }
 
     public class AuthSuccessResponse
     {
         public string Token { get; set; }
         public string RefreshToken { get; set; }
+        public APIResponseStatus Status { get; set; }
     }
 
 

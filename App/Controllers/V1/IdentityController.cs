@@ -32,7 +32,15 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage))
+                   // Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage)),
+                     Status = new APIResponseStatus
+                     {
+                         IsSuccessful = false,
+                         Message = new APIResponseMessage
+                         {
+                             FriendlyMessage = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage)).FirstOrDefault(),
+                         }
+                     }
                 });
             }
             var authResponse = await _identityService.RegisterAsync(regRequest);
@@ -40,7 +48,14 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = authResponse.Errors
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage =  authResponse.Errors.FirstOrDefault()
+                        }
+                    }
                 });
             }
 
@@ -48,7 +63,11 @@ namespace Libraryhub.Controllers.V1
             return Ok(new AuthSuccessResponse
             {
                 Token = authResponse.Token,
-                RefreshToken = authResponse.RefreshToken
+                RefreshToken = authResponse.RefreshToken,
+                Status = new APIResponseStatus
+                {
+                    IsSuccessful = true,
+                }
             });
         }
 
@@ -59,7 +78,15 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage))
+                    //Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage)),
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage)).FirstOrDefault(),
+                        }
+                    }
                 });
             }
 
@@ -68,7 +95,15 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = authResponse.Errors
+                    ///Errors = authResponse.Errors
+                     Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage =  authResponse.Errors.FirstOrDefault()
+                        }
+                    }
                 });
             }
 
@@ -88,14 +123,26 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = authResponse.Errors
+                    //Errors = authResponse.Errors
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = authResponse.Errors.FirstOrDefault()
+                        }
+                    }
                 });
             }
 
             return Ok(new AuthSuccessResponse
             {
                 Token = authResponse.Token,
-                RefreshToken = authResponse.RefreshToken
+                RefreshToken = authResponse.RefreshToken,
+                Status = new APIResponseStatus
+                {
+                    IsSuccessful = true,
+                }
             });
         }
 
@@ -108,7 +155,15 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = new[] { "Email Required" }
+                    // Errors = new[] { "Email Required" }
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = "Email Required"
+                        }
+                    }
                 });
             }
 
@@ -116,7 +171,14 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = new[] { "Old Password Required" }
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = "Old Password Required"
+                        }
+                    }
                 });
             }
 
@@ -124,7 +186,15 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = new[] { "New Password Required" }
+                    // Errors = new[] { "New Password Required" }
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = "New Password Required"
+                        }
+                    }
                 });
             }
 
@@ -134,13 +204,22 @@ namespace Libraryhub.Controllers.V1
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = authResponse.Errors
+                    //Errors = authResponse.Errors
+                    Status = new APIResponseStatus
+                    {
+                        IsSuccessful = false,
+                        Message = new APIResponseMessage
+                        {
+                            FriendlyMessage = authResponse.Errors.FirstOrDefault(),
+                        }
+                    }
                 });
             }
             return Ok(new AuthSuccessResponse
             {
                 Token = authResponse.Token,
-                RefreshToken = authResponse.RefreshToken
+                RefreshToken = authResponse.RefreshToken,
+                Status = new APIResponseStatus { IsSuccessful = true}
             });
         }
 

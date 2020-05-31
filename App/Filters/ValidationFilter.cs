@@ -1,4 +1,5 @@
 ﻿using App.Contracts.ErrorResponses;
+using App.Contracts.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
@@ -16,19 +17,32 @@ namespace App.Filters
                     .Where(x => x.Value.Errors.Count > 0)
                     .ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(x => x.ErrorMessage)).ToArray();
 
-                var errorResponse = new ErrorResponse();
+
+                //var errorResponse = new ErrorResponse();
+                var errorResponse = new NewErrorModel();
 
                 foreach (var error in errorsInModelState)
                 {
                     foreach (var errorValue in error.Value)
                     {
-                        var errorModel = new ErrorModel
+                        var errorModel = new NewErrorModel
                         {
                             FieldName = error.Key,
-                            Message = errorValue
+                            Status = new APIResponseStatus
+                            {
+                                IsSuccessful = false,
+                                Message = new APIResponseMessage
+                                {
+                                    FriendlyMessage = errorValue,
+                                }
+                            }
                         };
-                        errorResponse.Errors.Add(errorModel);
+                        errorResponse = errorModel;
+                        break;
                     }
+                    if (errorResponse == null)
+                        continue;
+                    break;
                 }
                 context.Result = new BadRequestObjectResult(errorResponse);
                 return;

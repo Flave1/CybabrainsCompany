@@ -24,6 +24,10 @@ namespace App.Contracts.V1
             public const string CONFIRM_CODE = Base + "/identity/confirmCode";
         }
 
-
+        public static class SliderEndpoint
+        {
+            public const string ADD_UPDATE_SLIDER = Base + "/setting/add/update/slider";
+            public const string GET_ALL_SLIDERS = Base + "/setting/get/all/sliders";
+        }
     }
 }

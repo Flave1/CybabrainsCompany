@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using App.DomainObjects.Auth;
+using App.DomainObjects.Silders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace App.Data
         }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<ConfirmEmailCode> ConfirmEmailCodes { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
